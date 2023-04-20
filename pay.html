@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BluePay</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    function getTarget() {
+
+        
+        const data = {
+
+        }; // 填入需要發送的資料
+        axios.get('http://pi.rocket-coding.com/api/GetOrderSuccess', data)
+            .then((response) => {
+                console.error('成功', response);
+            })
+            .catch((error) => {
+                console.error('錯誤：', error);
+            });
+    }
+
+
+</script>
+<body>
+    <div>
+        <button class="col-sm-12" onclick="getTarget()">打開ICON出現曾經聊天過的對象</button>
+        <form name='Newebpay' method='post' action='https://ccore.newebpay.com/MPG/mpg_gateway'>
+            <!-- 設定 hidden 可以隱藏不用給使用者看的資訊 -->
+            <!-- 藍新金流商店代號 -->
+            <input type='hidden' id='MerchantID' name='MerchantID' value='MS148623457'>
+            <!-- 交易資料透過 Key 及 IV 進行 AES 加密 -->
+            <input type='hidden' id='TradeInfo' name='TradeInfo' value='填入後端回傳的 TradeInfo'>
+            <!-- 經過上述 AES 加密過的字串，透過商店 Key 及 IV 進行 SHA256 加密 -->
+            <input type='hidden' id='TradeSha' name='TradeSha' value='填入後端回傳的 TradeSha'>
+            <!-- 串接程式版本 -->
+            <input type='hidden' id='Version' name='Version' value='2.0'>
+            <!-- 直接執行送出 -->
+            <input type='submit' value='前往付款'>
+        </form>
+    </div>
+</body>
+</html>

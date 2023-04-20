@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<script>
+  //79723597-C34F-4139-B1B6-8ADB8A10EF13
+  const url = 'http://pi.rocket-coding.com/api/resetPassword/guid?Password=stringst&ConfirmPassword=stringst&Guid=79723597-C34F-4139-B1B6-8ADB8A10EF13'; // 填入API的URL
+const data = { Password: 'stringst', ConfirmPassword: 'stringst' , Guid: '79723597-C34F-4139-B1B6-8ADB8A10EF13'}; // 填入需要發送的資料
+
+fetch(url, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json' // 指定請求內容類型為JSON
+  },
+  body: JSON.stringify(data) // 將資料轉換為JSON格式的字串
+})
+.then(response => response.json()) // 解析伺服器回應為JSON
+.then(data => {
+  console.log('成功取得回應：', data);
+})
+.catch(error => {
+  console.error('發生錯誤：', error);
+});
+
+  /*
+const test = async() => {
+        try {
+          const res = await axios.get('http://pi.rocket-coding.com/api/resetPassword/guid?Password=12345678&ConfirmPassword=12345678&Guid=79723597-C34F-4139-B1B6-8ADB8A10EF13');
+        console.log(res);
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      test();
+      */
+</script>
+<body>
+    <br>
+</body>
+</html>
